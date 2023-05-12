@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".utlies.LoginPageActivity">
 
-
     <TextView
         android:id="@+id/TvHeaderLogin"
         android:layout_width="wrap_content"

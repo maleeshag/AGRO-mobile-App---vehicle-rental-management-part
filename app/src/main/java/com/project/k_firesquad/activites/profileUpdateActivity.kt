@@ -14,6 +14,7 @@ import com.project.k_firesquad.models.CompanyData
 
 class profileUpdateActivity: AppCompatActivity() {
 
+    // Update the user data
     private lateinit var mobile: EditText
     private lateinit var email: EditText
     private lateinit var address: EditText
@@ -50,6 +51,7 @@ class profileUpdateActivity: AppCompatActivity() {
         }
     }
 
+    // Update the user data
     private fun setTextValues() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         currentUser?.let { user ->
@@ -82,6 +84,7 @@ class profileUpdateActivity: AppCompatActivity() {
         }
     }
 
+    // Update the user data
     private fun updateUserData() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         currentUser?.let { user ->
@@ -119,6 +122,7 @@ class profileUpdateActivity: AppCompatActivity() {
                         Toast.makeText(this, "Data Not Updated", Toast.LENGTH_SHORT).show()
                     }
             }
+
             if (!mobile.text.isNullOrEmpty()) {
                 updateMap["contact"] = mobile.text.toString()
             }

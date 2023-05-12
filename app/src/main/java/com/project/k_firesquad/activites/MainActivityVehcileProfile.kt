@@ -81,6 +81,8 @@ class MainActivityVehcileProfile : AppCompatActivity() {
         }
     }
 
+
+    //delete the record from the database
     private fun deleteRecord(id: String) {
         val dbRef = FirebaseDatabase.getInstance().getReference("Vehicles")
         val query: Query = dbRef.orderByChild("vehicleId").equalTo(id)

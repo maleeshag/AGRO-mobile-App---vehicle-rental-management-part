@@ -52,8 +52,10 @@ class RegisterActivity: AppCompatActivity() {
         password = findViewById(R.id.password) //company password
         username = findViewById(R.id.username) //company username
 
+        // Notification
         notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
+        // Notification channel
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationChannel = NotificationChannel(
                 channelId,
@@ -66,15 +68,17 @@ class RegisterActivity: AppCompatActivity() {
             notificationManager.createNotificationChannel(notificationChannel)
         }
 
-
+        // Notification builder
         dbRef = FirebaseDatabase.getInstance().getReference("Users")
 
-
+        // Submit button
         submit.setOnClickListener {
             saveUserData()
         }
     }
 
+
+    // Save the user data
     private fun saveUserData(){
         // Get the values from the text fields
         val cmpname = name.text.toString()
@@ -89,7 +93,7 @@ class RegisterActivity: AppCompatActivity() {
             name.error = "Please enter your name"
             return
         }
-        if(cmpemail.isEmpty()){
+        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(cmpemail).matches()){
             email.error = "Please enter your email"
             return
         }
@@ -158,6 +162,7 @@ class RegisterActivity: AppCompatActivity() {
             }
     }
 
+    // Show the notification
     private fun showNotification() {
         val intent = Intent(this,LoginPageActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(
@@ -176,17 +181,9 @@ class RegisterActivity: AppCompatActivity() {
                 .setAutoCancel(true)
         }
 
+        // Show the notification
         notificationManager.notify(1234, builder.build())
     }
-//
-//        if (userId != null) {
-//            dbRef.child(userId).setValue(user).addOnCompleteListener {
-//                Toast.makeText(applicationContext, "User added successfully", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-
-
-
 
 
 }

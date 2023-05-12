@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -15,6 +16,7 @@ import com.project.k_firesquad.activites.RegisterActivity
 
 class LoginPageActivity : AppCompatActivity() {
 
+    // Declare variables
     private lateinit var regButton:Button
     private lateinit var loginButton:Button
     private lateinit var email: EditText
@@ -22,7 +24,7 @@ class LoginPageActivity : AppCompatActivity() {
 
     private lateinit var dbRef: DatabaseReference
 
-
+    // Create the activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
@@ -76,7 +78,15 @@ class LoginPageActivity : AppCompatActivity() {
                     finish()
                 } else {
                     // Login failed. Show an error message
-                    Toast.makeText(this@LoginPageActivity, "Login failed. Please check your credentials and try again.", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@LoginPageActivity, "Login failed. Please check your credentials and try again.", Toast.LENGTH_SHORT).show()
+                    val builder= AlertDialog.Builder(this)
+                    builder.setTitle("Failed")
+                    builder.setMessage("Email or Password Invalid")
+                    builder.setPositiveButton("OK"){ dialog, which ->
+                        dialog.dismiss()
+                    }
+                    val dialog= builder.create()
+                    dialog.show()
                 }
             }
     }

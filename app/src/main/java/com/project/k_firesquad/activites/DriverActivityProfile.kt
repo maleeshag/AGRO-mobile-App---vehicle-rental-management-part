@@ -74,23 +74,6 @@ class DriverActivityProfile : AppCompatActivity() {
         addressTextView = findViewById(R.id.addressTextView)
         companyNameTextView = findViewById(R.id.companyNameTextView)
 
-//        //get the data from the intent
-//        intent.extras?.let {
-//
-//            val username = it.getString("username")
-//            val email = it.getString("email")
-//            val mobile = it.getString("contact")
-//            val address = it.getString("address")
-//            val companyName = it.getString("company_name")
-//
-//
-//            //set the data to the text views
-//            usernameTextView.text = username
-//            emailTextView.text = email
-//            mobileTextView.text = mobile
-//            addressTextView.text = address
-//            companyNameTextView.text = companyName
-//        }
 
         // Get a reference to the Firebase Realtime Database
         val database = FirebaseDatabase.getInstance()
@@ -128,6 +111,7 @@ class DriverActivityProfile : AppCompatActivity() {
 
     }
 
+    // Delete the user's record from the database
     private fun deleteRecord() {
         val dbRef = FirebaseDatabase.getInstance().getReference("Users")
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
